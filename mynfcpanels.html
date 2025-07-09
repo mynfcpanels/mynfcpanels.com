@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My NFC Panels</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.3));
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #00e0ff;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00e0ff;
+    }
+
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      animation: slideIn 2s ease-in-out;
+    }
+
+    .hero .subtitulo {
+      font-size: 20px;
+      max-width: 700px;
+      animation: fadeIn 3s ease-in-out;
+      margin-bottom: 70px;
+      line-height: 2;
+    }
+
+
+
+    .hero ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .hero ul li {
+      font-size: 25px;
+      margin-bottom: 40px;
+      color: #aeefff;
+    }
+
+    .hero ul li .large {
+      font-size: 30px;
+    }
+
+    .hero ul li .small {
+      font-size: 14px;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .section {
+      padding: 60px 40px;
+      text-align: center;
+      background: linear-gradient(to bottom right, #1e1e1e, #2c2c2c);
+    }
+
+    .section h3 {
+      font-size: 36px;
+      color: #00e0ff;
+      margin-bottom: 30px;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      transition: opacity 0.5s ease;
+    }
+
+    .product-card img.second {
+      position: absolute;
+      
+      opacity: 0;
+    }
+
+    .product-card:hover img.first {
+      opacity: 0;
+    }
+
+    .product-card:hover img.second {
+      opacity: 1;
+    }
+
+    .product-card h4 {
+      margin-top: 15px;
+      font-size: 20px;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .contact {
+      background: linear-gradient(to top right, #1c1c1c, #262626);
+      padding: 50px;
+    }
+
+    .contact form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact input, .contact textarea {
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .contact button {
+      padding: 15px;
+      border: none;
+      background-color: #00e0ff;
+      color: #000;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .contact button:hover {
+      background-color: #00bcd4;
+    }
+
+    .contact p {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #111;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .product-card {
+  background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.image-wrapper {
+  position: relative;
+  aspect-ratio: 1 / 1; /* cuadrado perfecto sin hacks */
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: opacity 0.4s ease;
+}
+
+.image-wrapper img.second {
+  opacity: 0;
+}
+
+.product-card:hover .image-wrapper img.first {
+  opacity: 0;
+}
+
+.product-card:hover .image-wrapper img.second {
+  opacity: 1;
+}
+
+.product-card h4 {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.dev-note {
+      margin-top: 40px;
+      font-size: 18px;
+      color: #aaa;
+      font-style: italic;
+    }
+</style>
+</head>
+<body>
+  <header>
+    <h1>My NFC Panels</h1>
+    <nav>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Conectividad Inteligente con My NFC Panels</h2>
+    <div class="subtitulo">
+    <p>Paneles NFC modernos para hoteles y clientes individuales.<br>Tecnología práctica y elegante para una experiencia sin contacto.</p>
+    </div>
+    <ul>
+      <li>✔ Mejora la experiencia del cliente</li>
+      <li>✔ Incrementa las reseñas positivas en tu negocio</li>
+      <li>✔ Ideal para <span class="large">grandes</span> y <span class="small">pequeños</span> negocios.</li>
+      <li>✔ Facilita el acceso a Wi-Fi, menús, reseñas, redes sociales y mucho más</li>
+      <li>✔ Servicio de diseño personalizado</li>
+    </ul>
+  </section>
+
+  <section class="section" id="productos">
+    <h3>Nuestros Productos</h3>
+    <div class="products">
+      <div class="product-card">
+        <div class="image-wrapper">
+          <img src="IMG/nfcpanellogo.png" alt="Panel NFC Hotel" class="first">
+          <img src="IMG/nfcpanelv3.png" alt="Vista Alternativa Panel" class="second">
+         </div>
+         <h4>Panel NFC conectividad Wi-Fi</h4>
+      </div>
+
+      <div class="product-card">
+        <div class="image-wrapper">
+          <img src="IMG/Google1.png" alt="Panel NFC Hotel" class="first">
+          <img src="IMG/Google-negroyblanco.png" alt="Vista Alternativa Panel" class="second">
+         </div>
+         <h4>Panel NFC Reseña Google Maps</h4>
+      </div>
+
+      <div class="product-card">
+        <div class="image-wrapper">
+          <img src="IMG/menu.png" alt="Panel NFC Hotel" class="first">
+          <img src="IMG/menu2.png" alt="Vista Alternativa Panel" class="second">
+         </div>
+         <h4>Panel NFC Menu Restaurante</h4>
+      </div>
+      
+      <div class="product-card">
+        <div class="image-wrapper">
+          <img src="IMG/Muchos.png" alt="Panel NFC Hotel" class="first">
+          <img src="IMG/instagram.png" alt="Vista Alternativa Panel" class="second">
+         </div>
+         <h4>Panel NFC Redes sociales</h4>
+      </div>
+</div>
+<p class="dev-note">Tienda en proceso de desarrollo... </p>
+<p class="dev-note">Si desea comprar algun producto contacte a <strong>mynfcpanels@gmail.com</strong></p>
+  </section>
+
+  <section class="contact" id="contacto">
+    <h3>Contáctanos</h3>
+    <form>
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Correo Electrónico" required>
+      <textarea rows="5" placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar Mensaje</button>
+    </form>
+    <p>O envíanos un correo a <strong>mynfcpanels@gmail.com</strong></p>
+  </section>
+
+  <footer>
+    &copy; 2025 My NFC Panels. Todos los derechos reservados.
+  </footer>
+</body>
+</html>
