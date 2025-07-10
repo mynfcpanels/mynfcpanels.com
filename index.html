@@ -260,6 +260,23 @@
       color: #aaa;
       font-style: italic;
     }
+
+@media (max-width: 600px) {
+  .hero {
+    padding-top: 340px;
+    margin-bottom: 340px;
+  }
+
+  .hero h2 {
+    font-size: 48px;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #00e0ff, #ff0095);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 </style>
 </head>
 <body>
@@ -272,7 +289,7 @@
   </header>
 
   <section class="hero">
-    <h2>Conectividad Inteligente con My NFC Panels</h2>
+    <h2>Conectividad <span class="gradient-text">Inteligente</span> con My NFC Panels</h2>
     <div class="subtitulo">
     <p>Paneles NFC modernos para hoteles y clientes individuales.<br>Tecnología práctica y elegante para una experiencia sin contacto.</p>
     </div>
